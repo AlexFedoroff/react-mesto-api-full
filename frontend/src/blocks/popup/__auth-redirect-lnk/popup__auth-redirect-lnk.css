@@ -1,0 +1,11 @@
+.popup__auth-redirect-lnk {
+  margin-left: 6px;
+  color: white;
+  text-decoration: none;
+}
+
+.popup__auth-redirect-lnk:hover {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.5s;
+}

@@ -1,0 +1,9 @@
+.popup__auth-redirect {
+  align-self: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  color: white;
+  visibility: hidden;
+  margin-top: 11px;
+}

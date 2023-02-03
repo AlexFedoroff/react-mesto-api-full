@@ -1,0 +1,11 @@
+.popup__field_auth {
+  background-color: black;  
+  color: #cccccc;  
+  border-bottom: 2px solid #cccccc !important;
+  margin-top: 30px;  
+}
+
+.popup__field_auth:focus {
+  outline: none; 
+  background: transparent !important;
+}

@@ -1,0 +1,11 @@
+.popup__container_photo {
+    border: none;
+    width: auto;
+    background: transparent;    
+  }
+  
+  @media screen and (max-width: 1050px) {
+    .popup__container_photo {    
+      max-width: 320px;
+    }
+  }

@@ -1,0 +1,15 @@
+.profile__info {
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1055px) {
+  .profile__info {
+    margin: 26px 0 0;
+  }
+}

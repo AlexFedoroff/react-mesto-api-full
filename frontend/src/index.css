@@ -1,0 +1,79 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/inter.css);
+
+@import url(./blocks/root/root.css);
+
+@import url(./blocks/loader/loader.css);
+@import url(./blocks/loader/_hidden/loader_hidden.css);
+@import url(./blocks/loader/__image/loader__image.css);
+
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__email/header__email.css);
+@import url(./blocks/header/__loginout-lnk/header__loginout-lnk.css);
+
+@import url(./blocks/content/content.css);
+
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/_auth/popup_auth.css);
+@import url(./blocks/popup/__img/popup__img.css);
+@import url(./blocks/popup/_photo/popup_photo.css);
+@import url(./blocks/popup/__close-icon/popup__close-icon.css);
+@import url(./blocks/popup/__container/popup__container.css);
+@import url(./blocks/popup/__container/_photo/popup__container_photo.css);
+@import url(./blocks/popup/__container/_auth/popup__container_auth.css);
+@import url(./blocks/popup/__field/_auth/popup__field_auth.css);
+
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__title/_confirm-delete/popup__title_confirm-delete.css);
+@import url(./blocks/popup/__title/_auth/popup__title_auth.css);
+@import url(./blocks/popup/__field/popup__field.css);
+@import url(./blocks/popup/__field/_invalid/popup__field_invalid.css);
+@import url(./blocks/popup/__save-btn/popup__save-btn.css);
+@import url(./blocks/popup/__save-btn/_disabled/popup__save-btn_disabled.css);
+@import url(./blocks/popup/__save-btn_confirm-delete/popup__save-btn_confirm-delete.css);
+@import url(./blocks/popup/__save-btn/_auth/popup__save-btn_auth.css);
+@import url(./blocks/popup//__auth-redirect/popup__auth-redirect.css);
+@import url(./blocks/popup//__auth-redirect/_visible/popup__auth-redirect_visible.css);
+@import url(./blocks/popup//__auth-redirect-lnk/popup__auth-redirect-lnk.css);
+@import url(./blocks/popup/__form/_auth/popup__form_auth.css);
+
+
+
+@import url(./blocks/popup/__form/popup__form.css);
+@import url(./blocks/popup/__form/_confirm-delete/popup__form_confirm-delete.css);
+@import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/popup/__photo-description/popup__photo-description.css);
+@import url(./blocks/popup/__close-icon/_photo/popup__close-icon_photo.css);
+@import url(./blocks/popup/__error/popup__error.css);
+@import url(./blocks/popup/__error/_active/popup__error_active.css);
+@import url(./blocks/popup/__infotext/popup__infotext.css);
+@import url(./blocks/popup/__auth-res-img/popup__auth-res-img.css);
+
+
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__avatar-btn/profile__avatar-btn.css);
+@import url(./blocks/profile/__avatar-edit-img/profile__avatar-edit-img.css);
+@import url(./blocks/profile/__avatar/profile__avatar.css);
+@import url(./blocks/profile/__info/profile__info.css);
+@import url(./blocks/profile/__info-description/profile__info-description.css);
+@import url(./blocks/profile/__info-name/profile__info-name.css);
+@import url(./blocks/profile/__edit-button/profile__edit-button.css);
+@import url(./blocks/profile/__add-button/profile__add-button.css);
+
+@import url(./blocks/elements/elements.css);
+
+@import url(./blocks/element/element.css);
+@import url(./blocks/element/__footer/element__footer.css);
+@import url(./blocks/element/__caption/element__caption.css);
+@import url(./blocks/element/__image/element__image.css);
+@import url(./blocks/element/__heart-container/element__heart-container.css);
+@import url(./blocks/element/__heart/element__heart.css);
+@import url(./blocks/element/__heart/_enabled/element__heart_enabled.css);
+@import url(./blocks/element/__heart-counter/element__heart-counter.css);
+@import url(./blocks/element/__trash/element__trash.css);
+@import url(./blocks/element/__trash/_hidden/element__trash_hidden.css);
+@import url(./blocks/element/__trash/_visible/element__trash_visible.css);
+
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__logo/footer__logo.css);
