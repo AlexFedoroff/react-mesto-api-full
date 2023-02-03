@@ -14,7 +14,7 @@ const app = express();
 
 mongoose.set('strictQuery', false);
 
-// app.use(cors);
+app.use(cors);
 app.use(requestLogger);
 
 app.use(bodyParser.json());
