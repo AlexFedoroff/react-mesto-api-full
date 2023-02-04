@@ -53,7 +53,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  address: apiSettings.authAddress
+  address: apiSettings.address
 });
 
 export default auth;
