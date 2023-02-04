@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
+import { React, Link } from 'react-router-dom';
 
-function authPage(props) {    
-  
-  let redirectClassName = "popup__auth-redirect";
+function authPage(props) {
+  let redirectClassName = 'popup__auth-redirect';
 
-  if (props.name === "register") {    
-    redirectClassName = redirectClassName + " popup__auth-redirect_visible"
-  }   
+  if (props.name === 'register') {
+    redirectClassName += ' popup__auth-redirect_visible';
+  }
 
   return (
     <div className="popup popup_auth popup_opened">
@@ -21,12 +20,12 @@ function authPage(props) {
             {props.btnText}
           </button>
           <p className={redirectClassName}>
-          Уже зарегистрированы?
-          <Link to="/sign-in" className="popup__auth-redirect-lnk">
-            Войти
-          </Link>
-        </p>
-        </form>        
+            Уже зарегистрированы?
+            <Link to="/sign-in" className="popup__auth-redirect-lnk">
+              Войти
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
   );

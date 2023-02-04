@@ -1,40 +1,40 @@
-import { useRef } from "react";
-import PopupWithForm from "./PopupWithForm.js";
+import { React, useRef } from 'react';
+import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup(props) {
   const nameRef = useRef(null);
   const linkRef = useRef(null);
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
-    props.onAddPlace({ name: nameRef.current.value, link: linkRef.current.value })    
-    linkRef.current.value='';
-    nameRef.current.value='';
+    props.onAddPlace({ name: nameRef.current.value, link: linkRef.current.value });
+    linkRef.current.value = '';
+    nameRef.current.value = '';
   }
-      
+
   return (
-    <PopupWithForm 
-      name="add" 
-      title="Новое место" 
+    <PopupWithForm
+      name="add"
+      title="Новое место"
       isOpen={props.isOpen}
-      onClose={props.onClose} 
+      onClose={props.onClose}
       onSubmit={handleSubmit}
       saveBtnText="Создать"
       isDataRetrieving={props.isDataRetrieving}
-      >
-      <input 
-        className="popup__field popup__field_title" 
+    >
+      <input
+        className="popup__field popup__field_title"
         ref={nameRef}
-        type="text" 
+        type="text"
         name="name"
-        placeholder="Название" 
-        id="input-title" 
-        minLength="2" 
+        placeholder="Название"
+        id="input-title"
+        minLength="2"
         maxLength="30"
         required
-        />
-      <span className="popup__error popup__error_input-title" id="input-title-error"></span>
-      <input         
+      />
+      <span className="popup__error popup__error_input-title" id="input-title-error" />
+      <input
         type="url"
         className="popup__field popup__field_link"
         ref={linkRef}
@@ -43,9 +43,9 @@ function AddPlacePopup(props) {
         placeholder="Ссылка на картинку"
         required
       />
-      <span className="popup__error popup__error_input-link" id="input-link-error"></span>
+      <span className="popup__error popup__error_input-link" id="input-link-error" />
     </PopupWithForm>
-  )
+  );
 }
 
 export default AddPlacePopup;

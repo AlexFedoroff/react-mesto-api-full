@@ -1,8 +1,8 @@
-import { useState } from "react";
-import AuthPage from "./AuthPage.js";
+import { React, useState } from 'react';
+import AuthPage from './AuthPage';
 
 export default function Login(props) {
-  const [values, setValues] = useState({ email: "", password: "" });
+  const [values, setValues] = useState({ email: '', password: '' });
 
   function handleChange(evt) {
     const { value, name } = evt.target;
@@ -24,7 +24,7 @@ export default function Login(props) {
       <input
         type="email"
         className="popup__field popup__field_auth"
-        id="email-input"        
+        id="email-input"
         value={values.email}
         name="email"
         placeholder="email"
@@ -32,7 +32,7 @@ export default function Login(props) {
         maxLength="64"
         onChange={handleChange}
         required
-      />      
+      />
       <input
         type="password"
         className="popup__field popup__field_auth"
@@ -44,7 +44,7 @@ export default function Login(props) {
         name="password"
         onChange={handleChange}
         required
-      />      
+      />
     </AuthPage>
   );
 }

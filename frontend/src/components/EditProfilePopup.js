@@ -1,6 +1,8 @@
+import {
+  React, useState, useContext, useEffect,
+} from 'react';
 import PopupWithForm from './PopupWithForm';
-import CurrentUserContext from "../contexts/CurrentUserContext.js";
-import {useState, useContext, useEffect } from 'react';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
 function EditProfilePopup(props) {
   const [name, setName] = useState('');
@@ -11,32 +13,33 @@ function EditProfilePopup(props) {
     if (currentUser.name) {
       setName(currentUser.name);
     }
-    if (currentUser.about){
-      setDescription(currentUser.about);  
+    if (currentUser.about) {
+      setDescription(currentUser.about);
     }
-  }, [currentUser,props.isOpen]);
+  }, [currentUser, props.isOpen]);
 
-  function handleChange(e) {    
+  function handleChange(e) {
+    // eslint-disable-next-line no-unused-expressions
     e.target.name === 'name' ? setName(e.target.value) : setDescription(e.target.value);
   }
-  
-  function handleSubmit(e) {    
+
+  function handleSubmit(e) {
     e.preventDefault();
-    props.onUpdateUser({name, about:description});
-  } 
-  
+    props.onUpdateUser({ name, about: description });
+  }
+
   return (
-    <PopupWithForm 
-      name="edit" 
-      title="Редактировать профиль" 
+    <PopupWithForm
+      name="edit"
+      title="Редактировать профиль"
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
       saveBtnText="Сохранить"
       isDataRetrieving={props.isDataRetrieving}
-    >      
-      <input 
-        className="popup__field popup__field_name" 
+    >
+      <input
+        className="popup__field popup__field_name"
         type="text"
         name="name"
         placeholder="Имя"
@@ -47,10 +50,10 @@ function EditProfilePopup(props) {
         onChange={handleChange}
         required
       />
-      <span className="popup__error popup__error_input-name" id="input-name-error"></span>
-      <input 
-        className="popup__field popup__field_description" 
-        type="text" 
+      <span className="popup__error popup__error_input-name" id="input-name-error" />
+      <input
+        className="popup__field popup__field_description"
+        type="text"
         name="about"
         id="input-description"
         placeholder="Описание"
@@ -60,8 +63,8 @@ function EditProfilePopup(props) {
         onChange={handleChange}
         required
       />
-      <span className="popup__error popup__error_input-description" id="input-description-error"></span>
-  </PopupWithForm>
-  )
+      <span className="popup__error popup__error_input-description" id="input-description-error" />
+    </PopupWithForm>
+  );
 }
 export default EditProfilePopup;

@@ -1,41 +1,39 @@
-//asf
-import React from 'react';
-import { useContext } from 'react';
+import { React, useContext } from 'react';
 import Card from './Card';
-import CurrentUserContext from "../contexts/CurrentUserContext.js";
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
 function Main(props) {
-  
   const currentUser = useContext(CurrentUserContext);
-  
+  // console.log(props.cards.data);
   return (
     <main className="content">
-    <section className="profile">
+      <section className="profile">
         <button className="profile__avatar-btn">
-        <div className="profile__avatar-edit-img">
-          <img src={currentUser.avatar} className="profile__avatar" alt="Аватар автора фоторабот" onClick={props.onEditAvatarClick}/>
+          <div className="profile__avatar-edit-img">
+            <img src={currentUser.avatar} className="profile__avatar" alt="Аватар автора фоторабот" onClick={props.onEditAvatarClick} />
+          </div>
+        </button>
+        <div className="profile__info">
+          <h1 className="profile__info-name">{currentUser.name}</h1>
+          <button name="edit" className="profile__edit-button" type="button" onClick={props.onEditProfileClick} />
+          <p className="profile__info-description">{currentUser.about}</p>
         </div>
-    </button>
-    <div className="profile__info">
-        <h1 className="profile__info-name">{currentUser.name}</h1>
-        <button name="edit" className="profile__edit-button" type="button" onClick={props.onEditProfileClick}></button>
-        <p className="profile__info-description">{currentUser.about}</p>
-    </div>
-    <button name="add" type="button" className="profile__add-button" onClick={props.onAddPlaceClick}></button>
-    </section>
-    <section className="elements">      
-      {props.cards.map((card) => (
-        <Card           
-          card={card} 
-          key={card._id}
-          onCardClick={props.onCardClick}
-          onCardLike={props.onCardLike}
-          onCardDelete={props.onCardDelete}
-        />
-      ))}
-    </section>
+        <button name="add" type="button" className="profile__add-button" onClick={props.onAddPlaceClick} />
+      </section>
+      <section className="elements">
+        {props.cards.data.map((card) => (
+          <Card
+            card={card}
+            // eslint-disable-next-line no-underscore-dangle
+            key={card._id}
+            onCardClick={props.onCardClick}
+            onCardLike={props.onCardLike}
+            onCardDelete={props.onCardDelete}
+          />
+        ))}
+      </section>
     </main>
-    )
-};
+  );
+}
 
 export default Main;
