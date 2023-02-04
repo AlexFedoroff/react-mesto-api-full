@@ -2,7 +2,8 @@ import infoImgFailure from '../images/AuthImgFailure.png';
 import infoImgSuccess from '../images/AuthImgSuccess.png';
 
 export const apiSettings = {
-  address: "https://api.alexfedoroff.nomoredomainsclub.ru",
+  // address: "https://api.alexfedoroff.nomoredomainsclub.ru",
+  address: "http://localhost:2800",
   token: "a71aaade-5a34-4f5b-911f-3a05934cc310",
   // authAddress: "https://api.nomoredomainsclub.ru/",
 };

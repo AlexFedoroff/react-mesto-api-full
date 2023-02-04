@@ -7,15 +7,25 @@ const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 2800 } = process.env;
 
-// const allowedOrigins = ['http://localhost:5173'];
 const app = express();
 
 mongoose.set('strictQuery', false);
 
-app.use(cors);
 app.use(requestLogger);
+
+app.use(
+  cors({
+    origin: [
+      'https://alexfedoroff.nomoredomainsclub.ru',
+      'http://localhost:3000',
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Authorization', 'Content-type', 'Accept'],
+  }),
+);
 
 app.use(bodyParser.json());
 
@@ -30,4 +40,5 @@ mongoose
   });
 
 app.listen(PORT, () => {
+  console.log(`The App is listening to port ${PORT}`);
 });

@@ -105,7 +105,7 @@ class Api {
 const api = new Api({
   address: apiSettings.address,
   headers: {
-    authorization: apiSettings.token,
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     "Content-Type": "application/json",
   },
 });
