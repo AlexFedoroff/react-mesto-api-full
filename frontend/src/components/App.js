@@ -1,6 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import '../index.css';
-import { Route, useHistory, Switch } from 'react-router-dom';
+import {
+  Route, useHistory, Switch,
+} from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -150,8 +152,7 @@ function App() {
         .getUserInfo(jwt)
         .then((res) => {
           setLoggedIn(true);
-          console.log(res);
-          setEmail(res.data.email);
+          setEmail(res.email);
           history.push('/');
         })
         .catch((err) => setLoader({ isOpen: true, errMsg: err }));
@@ -160,6 +161,8 @@ function App() {
   // Рендеринг при аутентификации
   useEffect(() => {
     if (isLoggedIn) {
+      // eslint-disable-next-line no-debugger
+      // debugger;
       Promise.all([
         Api.getUserInfo(),
         Api.getCards(),
