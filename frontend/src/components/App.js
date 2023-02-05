@@ -26,7 +26,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isConfirmPopupOpen, setConfirmPopupOpen] = useState(false);
   const [isImagePopupOpen, setImagePopupOpen] = useState(false);
-  const [loaderState, setLoader] = useState({ isOpen: true });
+  const [loaderState, setLoader] = useState({ isOpen: false });
   const [selectedCard, setSelectedCard] = useState(null);
   const [selectedCardForDelete, setSelectedCardForDelete] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
@@ -151,7 +151,7 @@ function App() {
         .then((res) => {
           setLoggedIn(true);
           console.log(res);
-          // setEmail(res.data.email);
+          setEmail(res.data.email);
           history.push('/');
         })
         .catch((err) => setLoader({ isOpen: true, errMsg: err }));
