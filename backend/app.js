@@ -35,5 +35,5 @@ mongoose
   });
 
 app.listen(PORT, () => {
-  console.log(`The App running and listening to port ${PORT}`);
+  console.log(`The App is running and listening to port ${PORT}`);
 });

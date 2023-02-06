@@ -1,9 +1,11 @@
+/*
 const allowedCors = [
   'http://localhost:3000',
   'https://alexfedoroff.nomoredomainsclub.ru',
   'http://alexfedoroff.nomoredomainsclub.ru',
 ];
-
+*/
+const allowedCors = ['*'];
 module.exports = (req, res, next) => {
   const { method } = req;
   const { origin } = req.headers;
