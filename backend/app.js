@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
+const corsErr = require('./middlewares/cors');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -12,17 +13,7 @@ const { PORT = 2800 } = process.env;
 
 const app = express();
 
-const options = {
-  origin: [
-    'http://localhost:3000',
-    'http://alexfedoroff.nomoredomainsclub.ru',
-    'https://alexfedoroff.nomoredomainsclub.ru',
-  ],
-  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
-  credentials: true,
-};
-app.use('*', cors(options));
+app.use(cors());
 
 app.use(requestLogger);
 app.get('/crash-test', () => {
@@ -37,7 +28,7 @@ app.use(router);
 app.use(errorLogger);
 app.use(errors());
 app.use(error);
-
+app.use(corsErr);
 mongoose.set('strictQuery', false);
 mongoose
   .connect('mongodb://localhost:27017/mestodb', {
