@@ -20,7 +20,7 @@ function Main(props) {
         <button name="add" type="button" className="profile__add-button" onClick={props.onAddPlaceClick} />
       </section>
       <section className="elements">
-        {props.cards.data.map((card) => (
+        {props.cards.map((card) => (
           <Card
             card={card}
             // eslint-disable-next-line no-underscore-dangle

@@ -7,14 +7,13 @@ class Auth {
 
   // eslint-disable-next-line class-methods-use-this
   checkRes(res) {
-    // console.log(`${this.backendAddress}/users/me`);
-    // console.log(res);
-    // console.log(res.status);
-    if (!res.ok) {
-      // eslint-disable-next-line prefer-promise-reject-errors
-      return Promise.reject(`Ошибка: ${res.status}`);
-    }
-    return res.json();
+    if (res.ok) return res.json();
+    const { status } = res;
+    return res.json().then((data) => {
+      const error = new Error(Object.values(data));
+      error.code = status;
+      throw error;
+    });
   }
 
   signUp(data) {

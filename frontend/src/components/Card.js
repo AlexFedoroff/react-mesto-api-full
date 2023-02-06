@@ -17,11 +17,11 @@ function Card(props) {
 
   // visibility of trash btns and likes
   // eslint-disable-next-line no-underscore-dangle
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = props.card.owner === currentUser._id;
   const cardDeleteButtonClassName = (`element__trash ${isOwn ? 'element__trash_visible' : 'element__trash_hidden'}`);
 
   // eslint-disable-next-line no-underscore-dangle
-  const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = props.card.likes.some((i) => i === currentUser._id);
   const cardLikeButtonClassName = (`element__heart ${isLiked ? 'element__heart_enabled' : ''}`);
 
   return (

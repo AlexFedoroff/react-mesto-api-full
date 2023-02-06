@@ -2,30 +2,25 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+require('dotenv').config();
 
 const { PORT = 2800 } = process.env;
 
 const app = express();
 
 mongoose.set('strictQuery', false);
+app.use('*', cors);
 
 app.use(requestLogger);
-
-app.use(
-  cors({
-    origin: [
-      'https://alexfedoroff.nomoredomainsclub.ru',
-      'http://localhost:3000',
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    allowedHeaders: ['Authorization', 'Content-type', 'Accept'],
-  }),
-);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.use(bodyParser.json());
 
@@ -40,5 +35,5 @@ mongoose
   });
 
 app.listen(PORT, () => {
-  console.log(`The App is listening to port ${PORT}`);
+  console.log(`The App running and listening to port ${PORT}`);
 });

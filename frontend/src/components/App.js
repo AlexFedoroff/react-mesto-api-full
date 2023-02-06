@@ -39,6 +39,7 @@ function App() {
   const [isInfotooltipOpen, setInfoTooltipOpen] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
+  const [respMessage, setRespMessage] = useState(null);
 
   // Открытие попапа редактирования профиля
   function handleEditProfileClick() {
@@ -101,7 +102,7 @@ function App() {
   }
   /* eslint no-underscore-dangle: 0 */
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     Api
       .toggleLike(card._id, isLiked)
       .then((newCard) => {
@@ -155,7 +156,12 @@ function App() {
           setEmail(res.email);
           history.push('/');
         })
-        .catch((err) => setLoader({ isOpen: true, errMsg: err }));
+        .catch((err) => {
+          localStorage.removeItem('jwt');
+          setLoggedIn(false);
+          setLoader({ isOpen: true, errMsg: err });
+          history.push('/sign-in');
+        });
     }
   }, [history]);
   // Рендеринг при аутентификации
@@ -184,18 +190,19 @@ function App() {
   function handleRegistration(data) {
     Auth
       .signUp(data)
-      // eslint-disable-next-line no-unused-vars
-      .then((_) => {
+      .then(() => {
         setRegSuccess(true);
         setInfoTooltipOpen(true);
+        setRespMessage(infoTooltipSettings.regSuccessMsg);
         history.push('/sign-in');
       })
-      // eslint-disable-next-line no-unused-vars
-      .catch((_) => {
+      .catch((err) => {
+        setRespMessage(err.message);
         setRegSuccess(false);
         setInfoTooltipOpen(true);
       });
   }
+
   // Вход в приложение
   function handleLogin(data) {
     Auth
@@ -207,8 +214,8 @@ function App() {
         history.push('/');
         setRegSuccess(true);
       })
-      // eslint-disable-next-line no-unused-vars
-      .catch((_) => {
+      .catch((err) => {
+        setRespMessage(err.message);
         setRegSuccess(false);
         setInfoTooltipOpen(true);
       })
@@ -228,20 +235,20 @@ function App() {
         <Header email={email} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
         <Switch>
           {currentUser._id && (
-          <ProtectedRoute
-            exact
-            path="/"
-            loggedIn={isLoggedIn}
-            component={Main}
-            onEditProfileClick={handleEditProfileClick}
-            onAddPlaceClick={handleAddPlaceClick}
-            onEditAvatarClick={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleConfirmOpen}
-            cards={cards}
-            isLoggedIn={isLoggedIn}
-          />
+            <ProtectedRoute
+              exact
+              path="/"
+              loggedIn={isLoggedIn}
+              component={Main}
+              onEditProfileClick={handleEditProfileClick}
+              onAddPlaceClick={handleAddPlaceClick}
+              onEditAvatarClick={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleConfirmOpen}
+              cards={cards}
+              isLoggedIn={isLoggedIn}
+            />
           )}
           <Route path="/sign-in">
             <Login onLogin={handleLogin} />
@@ -281,7 +288,7 @@ function App() {
           // eslint-disable-next-line max-len
           infoImg={isRegSuccess ? infoTooltipSettings.regSuccessImg : infoTooltipSettings.regFailureImg}
           // eslint-disable-next-line max-len
-          infoMsg={isRegSuccess ? infoTooltipSettings.regSuccessMsg : infoTooltipSettings.regFailureMsg}
+          infoMsg={respMessage}
           onClose={closeAllPopups}
         />
 

@@ -5,9 +5,19 @@ const ForbiddenError = require('../utils/forbidden-error');
 const Card = require('../models/card');
 const { OK_STATUS } = require('../utils/constants');
 
+const prepareCardData = ({
+  name, link, likes, _id, owner,
+}) => ({
+  name,
+  link,
+  likes,
+  _id,
+  owner,
+});
+
 const getCards = (_, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards.map(prepareCardData))) // res.send({ data: cards }))
     .catch(next);
 };
 
@@ -17,7 +27,7 @@ const createCard = (req, res, next) => {
   Card.create({
     name, link, owner: req.user._id, runValidators: true,
   })
-    .then((card) => res.status(OK_STATUS).send({ card }))
+    .then((card) => res.status(OK_STATUS).send(prepareCardData(card)))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные при создании карточки'));
@@ -58,7 +68,7 @@ const handleLikeCard = (method, req, res, next) => {
       next(new NotFoundError('Карточка с таким id не найдена'));
     })
     .then((card) => {
-      res.status(OK_STATUS).send(card);
+      res.status(OK_STATUS).send(prepareCardData(card));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
