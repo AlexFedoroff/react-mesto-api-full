@@ -12,7 +12,6 @@ const { PORT = 2800 } = process.env;
 
 const app = express();
 
-mongoose.set('strictQuery', false);
 const options = {
   origin: [
     'http://localhost:3000',
@@ -20,8 +19,6 @@ const options = {
     'https://alexfedoroff.nomoredomainsclub.ru',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
   allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
   credentials: true,
 };
@@ -41,6 +38,7 @@ app.use(errorLogger);
 app.use(errors());
 app.use(error);
 
+mongoose.set('strictQuery', false);
 mongoose
   .connect('mongodb://localhost:27017/mestodb', {
     useUnifiedTopology: true, useNewUrlParser: true, autoIndex: true,
