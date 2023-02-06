@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
-const cors = require('./middlewares/cors');
+const cors = require('cors');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -13,7 +13,19 @@ const { PORT = 2800 } = process.env;
 const app = express();
 
 mongoose.set('strictQuery', false);
-app.use('*', cors);
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'http://alexfedoroff.nomoredomainsclub.ru',
+    'https://alexfedoroff.nomoredomainsclub.ru',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
+app.use('*', cors(options));
 
 app.use(requestLogger);
 app.get('/crash-test', () => {
