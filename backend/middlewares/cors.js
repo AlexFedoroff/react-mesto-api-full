@@ -2,6 +2,7 @@ const allowedCors = [
   'http://localhost:3000',
   'http://alexfedoroff.nomoredomainsclub.ru',
   'https://alexfedoroff.nomoredomainsclub.ru',
+  'https://alexfedoroff.nomoredomainsclub.ru/users/me',
 ];
 
 module.exports = (req, res, next) => {
