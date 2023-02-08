@@ -188,10 +188,15 @@ function App() {
         .finally(() => {
           setLoader({ isOpen: false, errMsg: '' });
         });
+    } else {
+      setCurrentUser({});
+      setEmail('');
     }
   }, [isLoggedIn]);
+
   // Регистрация
   function handleRegistration(data) {
+    console.log('handlereg', data);
     Auth
       .signUp(data)
       .then(() => {
@@ -209,7 +214,6 @@ function App() {
 
   // Вход в приложение
   function handleLogin(data) {
-    console.log(data);
     Auth
       .signIn(data)
       .then((res) => {
