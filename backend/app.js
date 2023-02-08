@@ -17,9 +17,19 @@ const { PORT = 2800 } = process.env;
 
 const app = express();
 
+app.use(cors({
+  origin: [
+    'https://alexfedoroff.nomoredomainsclub.ru',
+    'http://alexfedoroff.nomoredomainsclub.ru',
+    'http://localhost:3000',
+  ],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}));
+
 // app.use(cors(corsOptions));
 // app.use('*', cors);
-app.use(cors());
+// app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
