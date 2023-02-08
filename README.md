@@ -26,5 +26,5 @@
 
 IP  IP: 51.250.29.129 <br>
 Frontend  https://alexfedoroff.nomoredomainsclub.ru/ <br>
-Backend  https://api.alexfedoroff.nomoredomainsclub.ru/
+Backend  https://api.alexfedoroff.nomoredomainsclub.ru/ <br>
 Ссылка на репозитарий: https://github.com/AlexFedoroff/react-mesto-api-full.git
