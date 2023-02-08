@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
-// const cors = require('cors');
-const cors = require('./middlewares/cors');
+const cors = require('cors');
+// const cors = require('./middlewares/cors');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -18,7 +18,8 @@ const { PORT = 2800 } = process.env;
 const app = express();
 
 // app.use(cors(corsOptions));
-app.use('*', cors);
+// app.use('*', cors);
+app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
