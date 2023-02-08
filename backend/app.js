@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
+// const cors = require('cors');
 // const cors = require('./middlewares/cors');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
@@ -13,34 +13,10 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // const corsOptions = ['http://localhost:3000', 'http://alexfedoroff.nomoredomainsclub.ru', 'https://alexfedoroff.nomoredomainsclub.ru'];
 
-const corsSettings = {
-  origin: [ // Массив доменов, с которых разрешены кросс-доменные запросы.
-    'http://alexfedoroff.nomoredomainsclub.ru',
-    'https://alexfedoroff.nomoredomainsclub.ru',
-    'https://localhost:3000',
-    'http://localhost:3000',
-  ],
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-  allowedHeaders: ['Content-Type', 'Origin', 'Referer', 'Accept', 'Authorization'],
-  credentials: true,
-};
-
 const { PORT = 2800 } = process.env;
 
 const app = express();
 
-app.use('*', cors(corsSettings));
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
-// app.use('*', cors);
-// app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
