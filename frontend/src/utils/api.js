@@ -38,7 +38,7 @@ class Api {
 
   // Изменение информации о пользователей
   editUserInfo(data) {
-    return this.doFetchfetch('/users/me', 'PATCH', { name: data.name, about: data.about });
+    return this.doFetch('/users/me', 'PATCH', { name: data.name, about: data.about });
   }
 
   // Добавление фото

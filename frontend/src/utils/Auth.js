@@ -16,58 +16,31 @@ class Auth {
     });
   }
 
-  signUp(data) {
-    return fetch(`${this.backendAddress}/signup`, {
-      method: 'POST',
+  doFetch(path, methodParam, bodyObj) {
+    return fetch(`${this.backendAddress}${path}`, {
+      method: methodParam,
+      headers: this.headers,
       withCredentials: true,
       credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ password: data.password, email: data.email }),
+      body: bodyObj ? JSON.stringify(bodyObj) : undefined,
     })
-      .then((res) => this.checkRes(res));
+      .then(this.checkRes);
+  }
+
+  signUp(data) {
+    return this.doFetch('/signup', 'POST', { password: data.password, email: data.email });
   }
 
   signIn(data) {
-    return fetch(`${this.backendAddress}/signin`, {
-      method: 'POST',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({ password: data.password, email: data.email }),
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch('/signup', 'POST', { password: data.password, email: data.email });
   }
 
   signOut() {
-    return fetch(`${this.backendAddress}/signout`, {
-      method: 'POST',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch('/signout', 'POST');
   }
 
   getUserInfo() {
-    // eslint-disable-next-line no-underscore-dangle
-    return fetch(`${this.backendAddress}/users/me`, {
-      method: 'GET',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch('/users/me', 'GET');
   }
 }
 
