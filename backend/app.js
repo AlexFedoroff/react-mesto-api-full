@@ -5,29 +5,15 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
-// const cors = require('cors');
-// const cors = require('./middlewares/cors');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const corsOrigins = ['http://localhost:3000', 'http://alexfedoroff.nomoredomainsclub.ru', 'https://alexfedoroff.nomoredomainsclub.ru'];
-/*
-const corsOptions = {
-  origin(origin, callback) {
-    if (corsOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-};
-*/
 
 const { PORT = 2800 } = process.env;
 const app = express();
-// app.use(cors(corsOptions));
+
 app.use(requestLogger);
 
 app.use((req, res, next) => {

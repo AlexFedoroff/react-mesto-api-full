@@ -6,7 +6,7 @@ function Footer(props) {
   }
   return (
     <footer className="footer">
-      <p className="footer__logo">© 2023 Mesto Russia Alex Fedoroff v.0.9001</p>
+      <p className="footer__logo">© 2023 Mesto Russia</p>
     </footer>
   );
 }

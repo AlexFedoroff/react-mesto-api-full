@@ -196,7 +196,6 @@ function App() {
 
   // Регистрация
   function handleRegistration(data) {
-    console.log('handlereg', data);
     Auth
       .signUp(data)
       .then(() => {

@@ -27,22 +27,8 @@ class Api {
   }
 
   // Информация о пользователе
-  /*
   getUserInfo() {
     return this.doFetch('/users/me', 'GET');
-  } */
-
-  getUserInfo() {
-    // eslint-disable-next-line no-underscore-dangle
-    return fetch(`${this.address}/users/me`, {
-      method: 'GET',
-      withCredentials: true,
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => this.checkRes(res));
   }
 
   // Список фото с ресурса
