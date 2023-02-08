@@ -23,7 +23,7 @@ app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
-  }, 1000);
+  }, 0);
 });
 app.use('*', cors);
 app.use(bodyParser.json());

@@ -16,7 +16,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "npm run build && scp -r ./build/* praktikum@51.250.29.129:/home/praktikum/react-mesto-api-full/frontend",
+    "deploy": "npm run build && scp -r ./build/* praktikum@51.250.29.129:/home/praktikum/react-mesto-api-full/frontend/build",
     "start": "PORT=3000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
