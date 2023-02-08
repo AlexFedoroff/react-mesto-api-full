@@ -3,7 +3,7 @@ import AuthPage from './AuthPage';
 
 export default function Login(props) {
   const [values, setValues] = useState({ email: '', password: '' });
-
+  // console.log('login');
   function handleChange(evt) {
     const { value, name } = evt.target;
     setValues({ ...values, [name]: value });

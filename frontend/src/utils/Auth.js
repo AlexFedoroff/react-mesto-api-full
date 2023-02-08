@@ -19,6 +19,8 @@ class Auth {
   signUp(data) {
     return fetch(`${this.backendAddress}/signup`, {
       method: 'POST',
+      withCredentials: true,
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -30,22 +32,39 @@ class Auth {
   signIn(data) {
     return fetch(`${this.backendAddress}/signin`, {
       method: 'POST',
+      withCredentials: true,
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({ password: data.password, email: data.email }),
     })
       .then((res) => this.checkRes(res));
   }
 
-  getUserInfo(token) {
+  signOut() {
+    return fetch(`${this.backendAddress}/signout`, {
+      method: 'POST',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then((res) => this.checkRes(res));
+  }
+
+  getUserInfo() {
     // eslint-disable-next-line no-underscore-dangle
     return fetch(`${this.backendAddress}/users/me`, {
       method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => this.checkRes(res));

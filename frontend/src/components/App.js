@@ -146,29 +146,33 @@ function App() {
     setSelectedCardForDelete(card);
   }
 
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      Auth
-        .getUserInfo(jwt)
-        .then((res) => {
+  const checkAuth = () => {
+    Auth
+      .getUserInfo()
+      .then((res) => {
+        if (res) {
           setLoggedIn(true);
           setEmail(res.email);
           history.push('/');
-        })
-        .catch((err) => {
-          localStorage.removeItem('jwt');
+        } else {
           setLoggedIn(false);
-          setLoader({ isOpen: true, errMsg: err });
-          history.push('/sign-in');
-        });
-    }
-  }, [history]);
+          setEmail('');
+        }
+      })
+      .catch(() => {
+        setLoggedIn(false);
+        setEmail('');
+        history.push('/sign-in');
+      });
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   // Рендеринг при аутентификации
   useEffect(() => {
     if (isLoggedIn) {
-      // eslint-disable-next-line no-debugger
-      // debugger;
       Promise.all([
         Api.getUserInfo(),
         Api.getCards(),
@@ -205,12 +209,12 @@ function App() {
 
   // Вход в приложение
   function handleLogin(data) {
+    console.log(data);
     Auth
       .signIn(data)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
-        setEmail(data.email);
+        setEmail(res.email);
         history.push('/');
         setRegSuccess(true);
       })
@@ -224,8 +228,10 @@ function App() {
   // Выход из приложения
   function handleLogout() {
     setLoggedIn(false);
-    localStorage.removeItem('jwt');
     setEmail('');
+    Auth
+      .signOut()
+      .catch((err) => console.log(err.message));
     history.push('/sign-in');
   }
 

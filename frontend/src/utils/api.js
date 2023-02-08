@@ -6,10 +6,20 @@ class Api {
     this.headers = headers;
   }
 
+  doFetch(path, methodParam, bodyObj) {
+    return fetch(`${this.address}${path}`, {
+      method: methodParam,
+      headers: this.headers,
+      withCredentials: true,
+      credentials: 'include',
+      body: bodyObj ? JSON.stringify(bodyObj) : undefined,
+    })
+      .then(this.checkRes);
+  }
+
   // eslint-disable-next-line class-methods-use-this
   checkRes(res) {
     if (!res.ok) {
-      // console.log(res.body);
       // eslint-disable-next-line prefer-promise-reject-errors
       return Promise.reject(res);
     }
@@ -18,82 +28,44 @@ class Api {
 
   // Информация о пользователе
   getUserInfo() {
-    return fetch(`${this.address}/users/me`, {
-      method: 'GET',
-      headers: this.headers,
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch('/users/me', 'GET');
   }
 
   // Список фото с ресурса
   getCards() {
-    return fetch(`${this.address}/cards`, {
-      method: 'GET',
-      headers: this.headers,
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch('/cards', 'GET');
   }
 
   // Изменение информации о пользователей
   editUserInfo(data) {
-    return fetch(`${this.address}/users/me`, {
-      method: 'PATCH',
-      headers: this.headers,
-      body: JSON.stringify({
-        name: data.name,
-        about: data.about,
-      }),
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetchfetch('/users/me', 'PATCH', { name: data.name, about: data.about });
   }
 
   // Добавление фото
   addCard(cardInfo) {
-    return fetch(`${this.address}/cards`, {
-      method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify({
-        name: cardInfo.name,
-        link: cardInfo.link,
-      }),
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch('/cards', 'POST', { name: cardInfo.name, link: cardInfo.link });
   }
 
   // Удаление фото
   deleteCard(cardId) {
-    return fetch(`${this.address}/cards/${cardId}`, {
-      method: 'DELETE',
-      headers: this.headers,
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch(`/cards/${cardId}`, 'DELETE');
   }
 
+  // like/dislike
   toggleLike(cardId, isLiked) {
     const methodName = (isLiked ? 'DELETE' : 'PUT');
-    return fetch(`${this.address}/cards/${cardId}/likes`, {
-      method: methodName,
-      headers: this.headers,
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch(`/cards/${cardId}/likes`, methodName);
   }
 
+  // Изменение аватара
   editAvatar(data) {
-    return fetch(`${this.address}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this.headers,
-      body: JSON.stringify({
-        avatar: data.avatar,
-      }),
-    })
-      .then((res) => this.checkRes(res));
+    return this.doFetch('/users/me/avatar', 'PATCH', { avatar: data.avatar });
   }
 }
 
 const api = new Api({
   address: apiSettings.address,
   headers: {
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   },
 });
