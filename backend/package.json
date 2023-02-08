@@ -1,6 +1,6 @@
 {
   "name": "react-mesto-api-full",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Проект Mesto, бэкенд",
   "main": "app.js",
   "scripts": {
