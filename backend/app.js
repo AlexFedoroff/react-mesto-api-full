@@ -11,13 +11,13 @@ const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const corsOptions = ['http://localhost:3000', 'http://alexfedoroff.nomoredomainsclub.ru', 'https://alexfedoroff.nomoredomainsclub.ru'];
+// const corsOptions = ['http://localhost:3000', 'http://alexfedoroff.nomoredomainsclub.ru', 'https://alexfedoroff.nomoredomainsclub.ru'];
 
 const { PORT = 2800 } = process.env;
 
 const app = express();
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(requestLogger);
 app.get('/crash-test', () => {
