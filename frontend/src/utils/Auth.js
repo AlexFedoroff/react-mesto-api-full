@@ -21,9 +21,7 @@ class Auth {
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: data.password, email: data.email }),
     })
       .then((res) => this.checkRes(res));
@@ -34,10 +32,7 @@ class Auth {
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: data.password, email: data.email }),
     })
       .then((res) => this.checkRes(res));
@@ -48,10 +43,7 @@ class Auth {
       method: 'POST',
       withCredentials: true,
       credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => this.checkRes(res));
   }
@@ -62,10 +54,7 @@ class Auth {
       method: 'GET',
       withCredentials: true,
       credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => this.checkRes(res));
   }

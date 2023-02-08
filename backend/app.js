@@ -18,15 +18,14 @@ const { PORT = 2800 } = process.env;
 const app = express();
 
 // app.use(cors(corsOptions));
-
+app.use('*', cors);
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.use('*', cors);
-// app.use(cors);
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
