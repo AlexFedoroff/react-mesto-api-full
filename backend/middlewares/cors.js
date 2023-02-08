@@ -1,6 +1,5 @@
 const allowedCors = [
   'https://alexfedoroff.nomoredomainsclub.ru',
-  'https://alexfedoroff.nomoredomainsclub.ru/sign-in',
   'http://localhost:3000',
   'http://alexfedoroff.nomoredomainsclub.ru',
 ];
@@ -12,7 +11,7 @@ module.exports = (req, res, next) => {
   const requestHeaders = req.headers['access-control-request-headers'];
 
   if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Origin', 'https://alexfedoroff.nomoredomainsclub.ru');
     res.header('Access-Control-Allow-Credentials', 'true');
   }
 
