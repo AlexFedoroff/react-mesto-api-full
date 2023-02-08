@@ -23,6 +23,7 @@
 
 `npm run start` — запускает сервер  
 `npm run dev` — запускает сервер с hot-reload
-  
-Ссылка на сайт: https://alexfedoroff.nomoredomainsclub.ru/
-IP: 51.250.29.129 
+
+IP  IP: 51.250.29.129 <br>
+Frontend  https://alexfedoroff.nomoredomainsclub.ru/ <br>
+Backend  https://api.alexfedoroff.nomoredomainsclub.ru/
