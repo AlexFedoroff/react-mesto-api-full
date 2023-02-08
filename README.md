@@ -24,7 +24,7 @@
 `npm run start` — запускает сервер  
 `npm run dev` — запускает сервер с hot-reload
 
-IP  IP: 51.250.29.129 <br>
+IP: 51.250.29.129 <br>
 Frontend  https://alexfedoroff.nomoredomainsclub.ru/ <br>
 Backend  https://api.alexfedoroff.nomoredomainsclub.ru/ <br>
 Ссылка на репозитарий: https://github.com/AlexFedoroff/react-mesto-api-full.git
