@@ -15,8 +15,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const corsSettings = {
   origin: [ // Массив доменов, с которых разрешены кросс-доменные запросы.
-    'https://domainname.nataly.nomoredomains.sbs',
-    'http://domainname.nataly.nomoredomains.sbs',
+    'http://alexfedoroff.nomoredomainsclub.ru',
+    'https://alexfedoroff.nomoredomainsclub.ru',
     'https://localhost:3000',
     'http://localhost:3000',
   ],
