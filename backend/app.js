@@ -32,6 +32,13 @@ const { PORT = 2800 } = process.env;
 const app = express();
 
 app.use('*', cors(corsSettings));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 // app.use('*', cors);
 // app.use(cors());
 app.use(requestLogger);
