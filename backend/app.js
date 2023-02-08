@@ -13,21 +13,25 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 // const corsOptions = ['http://localhost:3000', 'http://alexfedoroff.nomoredomainsclub.ru', 'https://alexfedoroff.nomoredomainsclub.ru'];
 
+const corsSettings = {
+  origin: [ // Массив доменов, с которых разрешены кросс-доменные запросы.
+    'https://domainname.nataly.nomoredomains.sbs',
+    'http://domainname.nataly.nomoredomains.sbs',
+    'https://localhost:3000',
+    'http://localhost:3000',
+  ],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'Origin', 'Referer', 'Accept', 'Authorization'],
+  credentials: true,
+};
+
 const { PORT = 2800 } = process.env;
 
 const app = express();
 
-app.use(cors({
-  origin: [
-    'https://alexfedoroff.nomoredomainsclub.ru',
-    'http://alexfedoroff.nomoredomainsclub.ru',
-    'http://localhost:3000',
-  ],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-}));
-
-// app.use(cors(corsOptions));
+app.use('*', cors(corsSettings));
 // app.use('*', cors);
 // app.use(cors());
 app.use(requestLogger);
