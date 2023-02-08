@@ -5,19 +5,19 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
-// const cors = require('cors');
-const cors = require('./middlewares/cors');
+const cors = require('cors');
+// const cors = require('./middlewares/cors');
 const router = require('./routes/index');
 const error = require('./middlewares/error');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-// const corsOptions = ['http://localhost:3000', 'http://alexfedoroff.nomoredomainsclub.ru', 'https://alexfedoroff.nomoredomainsclub.ru'];
+const corsOptions = ['http://localhost:3000', 'http://alexfedoroff.nomoredomainsclub.ru', 'https://alexfedoroff.nomoredomainsclub.ru'];
 
 const { PORT = 2800 } = process.env;
 
 const app = express();
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(requestLogger);
 app.get('/crash-test', () => {
@@ -25,7 +25,8 @@ app.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
-app.use('*', cors);
+// app.use('*', cors);
+// app.use(cors);
 app.use(bodyParser.json());
 app.use(cookieParser());
 
